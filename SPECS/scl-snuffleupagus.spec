@@ -69,7 +69,6 @@ install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 %files
 %defattr(-,root,root,-)
 %{php_extdir}/snuffleupagus.so
-%config(noreplace) %{php_inidir}/20-snuffleupagus.ini
 
 %changelog
 * Wed Aug 14 2019 Dan Muey <dan@cpanel.net> - 0.4.0-1
