@@ -26,7 +26,7 @@
 Name:    %{?scl_prefix}php-snuffleupagus
 Vendor:  cPanel, Inc.
 Summary: Protective PHP Hardening Extension
-Version: 0.4.0
+Version: 0.4.1
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
 %define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
@@ -71,5 +71,8 @@ install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 %{php_extdir}/snuffleupagus.so
 
 %changelog
+* Wed  Aug 14 2019 Dan Muey <dan@cpanel.net> - 0.4.1-1
+- Update to v0.4.1
+
 * Wed Aug 14 2019 Dan Muey <dan@cpanel.net> - 0.4.0-1
 - Initial creation
