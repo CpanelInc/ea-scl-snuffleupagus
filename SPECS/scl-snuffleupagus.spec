@@ -60,7 +60,6 @@ make %{?_smp_mflags}
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf %{buildroot}
 install -d -m 755 $RPM_BUILD_ROOT%{php_extdir}
 install -d -m 755 $RPM_BUILD_ROOT%{php_inidir}
-install -m 755 %{SOURCE1} $RPM_BUILD_ROOT%{php_inidir}
 install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 
 %clean
