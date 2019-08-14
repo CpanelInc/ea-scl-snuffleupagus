@@ -57,6 +57,7 @@ cd src/
 make %{?_smp_mflags}
 
 %install
+cd src/
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf %{buildroot}
 install -d -m 755 $RPM_BUILD_ROOT%{php_extdir}
 install -d -m 755 $RPM_BUILD_ROOT%{php_inidir}
