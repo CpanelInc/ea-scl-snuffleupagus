@@ -52,7 +52,6 @@ Snuffleupagus is a PHP7+ module designed to drastically raise the cost of attack
 %build
 cd src/
 %{_scl_root}/usr/bin/phpize
-cd ..
 
 %configure --with-php-config=%{_bindir}/php-config --enable-snuffleupagus
 make %{?_smp_mflags}
