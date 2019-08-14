@@ -23,7 +23,7 @@
 %endif
 %endif
 
-Name:    %{?scl_prefix}php-
+Name:    %{?scl_prefix}php-snuffleupagus
 Vendor:  cPanel, Inc.
 Summary: Protective PHP Hardening Extension
 Version: 0.4.0
