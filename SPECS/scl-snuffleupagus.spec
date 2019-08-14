@@ -39,7 +39,7 @@ BuildRequires: scl-utils-build
 BuildRequires: %{?scl_prefix}scldevel
 BuildRequires: %{?scl_prefix}build
 BuildRequires: %{?scl_prefix}php-devel
-BuildRequires: autoconf, automake, libtool
+BuildRequires: autoconf, automake, libtool, pcre-devel
 Requires:      %{?scl_prefix}php(zend-abi) = %{php_zend_api}
 Requires:      %{?scl_prefix}php(api) = %{php_core_api}
 
