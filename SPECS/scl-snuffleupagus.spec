@@ -24,7 +24,7 @@
 %endif
 
 Name:    %{?scl_prefix}php-snuffleupagus
-Vendor:  cPanel, Inc.
+Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.5.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
