@@ -28,7 +28,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.5.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -63,6 +63,20 @@ install -d -m 755 $RPM_BUILD_ROOT%{php_extdir}
 install -d -m 755 $RPM_BUILD_ROOT%{php_inidir}
 install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 
+# by using using config/*.rules if a rule file is added or removed upstream then
+# %files will alert us to that fact at build time so we can manage %files properly
+install -d -m 755 $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.rules.d
+pwd
+ls -l ../
+ls -l 
+%{__cp} ../config/*.rules $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.rules.d/
+
+cat > $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.ini <<EOF
+; Enable snuffleupagus
+extension=snuffleupagus.so
+sp.configuration_file=%{php_inidir}/20-snuffleupagus.rules.d/default.rules
+EOF
+
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf %{buildroot}
 
@@ -70,7 +84,17 @@ install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 %defattr(-,root,root,-)
 %{php_extdir}/snuffleupagus.so
 
+%config(noreplace) %attr(644,root,root) %{php_inidir}/20-snuffleupagus.ini
+
+%dir %{php_inidir}/20-snuffleupagus.rules.d/
+%attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/default.rules
+%attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/rips.rules
+%attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
+
 %changelog
+* Wed Aug 28 2019 Daniel Muey <dan@cpanel.net> - 0.5.0-2
+- ZC-5444: Add ini that enables the extension
+
 * Wed  Aug 14 2019 Dan Muey <dan@cpanel.net> - 0.5.0-1
 - Update to v0.5.0
 
