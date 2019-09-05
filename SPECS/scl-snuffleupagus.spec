@@ -28,7 +28,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.5.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 2
+%define release_prefix 4
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -68,7 +68,7 @@ install -m 755 modules/snuffleupagus.so $RPM_BUILD_ROOT%{php_extdir}
 install -d -m 755 $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.rules.d
 pwd
 ls -l ../
-ls -l 
+ls -l
 %{__cp} ../config/*.rules $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.rules.d/
 
 cat > $RPM_BUILD_ROOT%{php_inidir}/20-snuffleupagus.ini <<EOF
@@ -92,6 +92,13 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Thu Sep 05 2019 Cory McIntire <cory@cpanel.net> - 0.5.0-4
+- ZC-5409: Revert previous 0.5.0-3 rollback test
+
+* Thu Sep 05 2019 Cory McIntire <cory@cpanel.net> - 0.5.0-3
+- ZC-5409: Rolling “scl-snuffleupagus” back to “63cd813641f9dd7df4ad40df37c66af353df6378”
+- Testing EA4-tool rollback procedures
+
 * Wed Aug 28 2019 Daniel Muey <dan@cpanel.net> - 0.5.0-2
 - ZC-5444: Add ini that enables the extension
 
