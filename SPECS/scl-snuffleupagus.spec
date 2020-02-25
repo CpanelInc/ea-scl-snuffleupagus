@@ -28,7 +28,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.5.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 4
+%define release_prefix 5
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -39,9 +39,15 @@ BuildRequires: scl-utils-build
 BuildRequires: %{?scl_prefix}scldevel
 BuildRequires: %{?scl_prefix}build
 BuildRequires: %{?scl_prefix}php-devel
-BuildRequires: autoconf, automake, libtool, pcre-devel
+%if 0%{rhel} > 6
+BuildRequires: autoconf
+%else
+BuildRequires: autotools-latest-autoconf
+%endif
+BuildRequires: automake, libtool, pcre-devel
 Requires:      %{?scl_prefix}php(zend-abi) = %{php_zend_api}
 Requires:      %{?scl_prefix}php(api) = %{php_core_api}
+Requires:      %{?scl_prefix}php-cli
 
 %description
 Snuffleupagus is a PHP7+ module designed to drastically raise the cost of attacks against websites. This is achieved by killing entire bug classes and providing a powerful virtual-patching system, allowing the administrator to fix specific vulnerabilities without having to touch the PHP code.
@@ -51,7 +57,13 @@ Snuffleupagus is a PHP7+ module designed to drastically raise the cost of attack
 
 %build
 cd src/
+
+%if 0%{rhel} < 7
+scl enable autotools-latest '%{_scl_root}/usr/bin/phpize'
+%else
 %{_scl_root}/usr/bin/phpize
+%endif
+
 
 %configure --with-php-config=%{_bindir}/php-config --enable-snuffleupagus
 make %{?_smp_mflags}
@@ -92,6 +104,10 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Tue Feb 18 2020 Tim Mullin <tim@cpanel.net> - 0.5.0-5
+- EA-8865: Add php-cli as a dependency
+- Added autotools-latest-autoconf to build with PHP73 & Cent6
+
 * Thu Sep 05 2019 Cory McIntire <cory@cpanel.net> - 0.5.0-4
 - ZC-5409: Revert previous 0.5.0-3 rollback test
 
