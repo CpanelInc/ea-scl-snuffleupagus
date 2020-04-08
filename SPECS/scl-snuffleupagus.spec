@@ -28,7 +28,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.5.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 5
+%define release_prefix 6
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -104,6 +104,9 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Mon Mar 16 2020 Daniel Muey <dan@cpanel.net> - 0.5.0-6
+- ZC-6164: Add package for 7.4
+
 * Tue Feb 18 2020 Tim Mullin <tim@cpanel.net> - 0.5.0-5
 - EA-8865: Add php-cli as a dependency
 - Added autotools-latest-autoconf to build with PHP73 & Cent6
