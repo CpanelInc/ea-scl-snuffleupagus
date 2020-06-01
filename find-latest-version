@@ -30,6 +30,7 @@ sub _get_required {
     my $version = Cpanel::JSON::Load( $res->{content} )->[0]{tag_name};
     die "Could not determine version from github\n" if !$version;
 
+    $version =~ s/^v//;
     my $name = "$version.tar.gz";
     my $url  = "https://github.com/nbs-system/snuffleupagus/archive/$name";
 
