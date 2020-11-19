@@ -21,7 +21,7 @@ ea4_tool::util::find_latest_version( \&_get_required, \&_add_sum ) if !caller();
 sub _get_required {
     my ($http) = @_;
 
-    my $res = $http->get("https://api.github.com/repos/nbs-system/snuffleupagus/releases");
+    my $res = $http->get("https://api.github.com/repos/jvoisin/snuffleupagus/releases");
     if ( !$res->{success} ) {
         die "Could not GET snuffleupagus info from github ($res->{status} $res->{reason})\n\t Throttled? `curl -I https://api.github.com/rate_limit 2>&1 | grep ^X-RateLimit`\n";
     }
@@ -30,9 +30,10 @@ sub _get_required {
     my $version = Cpanel::JSON::Load( $res->{content} )->[0]{tag_name};
     die "Could not determine version from github\n" if !$version;
 
-    $version =~ s/^v//;
     my $name = "$version.tar.gz";
-    my $url  = "https://github.com/nbs-system/snuffleupagus/archive/$name";
+    my $url  = "https://github.com/jvoisin/snuffleupagus/archive/$name";
+
+    $version =~ s/^v//;
 
     return ( $version, $url, $name );
 }
@@ -61,6 +62,6 @@ We can add checksum support if github releases had that information which isn’
 
 =item API call L<https://developer.github.com/v3/repos/releases/#get-the-latest-release>
 
-=item web view L<https://github.com/nbs-system/snuffleupagus/releases>
+=item web view L<https://github.com/jvoisin/snuffleupagus/releases>
 
 =back
