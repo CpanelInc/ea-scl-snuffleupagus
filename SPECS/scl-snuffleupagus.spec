@@ -33,7 +33,7 @@ Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
 URL: https://snuffleupagus.readthedocs.io/
-Source: https://github.com/nbs-system/snuffleupagus/archive/v%{version}.tar.gz
+Source: https://github.com/jvoisin/snuffleupagus/archive/v%{version}.tar.gz
 
 BuildRequires: scl-utils-build
 BuildRequires: %{?scl_prefix}scldevel
