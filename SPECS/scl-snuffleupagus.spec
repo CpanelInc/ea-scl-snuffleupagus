@@ -26,7 +26,7 @@
 Name:    %{?scl_prefix}php-snuffleupagus
 Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
-Version: 0.6.0
+Version: 0.7.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
 %define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
@@ -104,6 +104,9 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Mon Jan 04 2021 Cory McIntire <cory@cpanel.net> - 0.7.0-1
+- EA-9504: Update scl-snuffleupagus from v0.6.0 to v0.7.0
+
 * Fri Nov 20 2020 Tim Mullin <tim@cpanel.net> - 0.6.0-1
 - EA-9431: Update scl-snuffleupagus from v0.5.0 to v0.6.0
 
