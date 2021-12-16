@@ -28,7 +28,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.7.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -104,6 +104,9 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Thu Dec 16 2021 Dan Muey <dan@cpanel.net> - 0.7.0-2
+- ZC-9203: Update DISABLE_BUILD to match OBS
+
 * Mon Jan 04 2021 Cory McIntire <cory@cpanel.net> - 0.7.0-1
 - EA-9504: Update scl-snuffleupagus from v0.6.0 to v0.7.0
 
