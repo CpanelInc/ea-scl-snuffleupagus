@@ -1,3 +1,6 @@
+%global debug_package %{nil}
+%define _enable_debug_packages %{nil}
+
 # Package namespaces
 %global ns_name ea
 %global ns_dir /opt/cpanel
@@ -26,7 +29,7 @@ Vendor:  cPanel, L.L.C.
 Summary: Protective PHP Hardening Extension
 Version: 0.7.0
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4572 for more details
-%define release_prefix 3
+%define release_prefix 4
 Release: %{release_prefix}%{?dist}.cpanel
 License: PHP
 Group:   Development/Languages
@@ -102,6 +105,9 @@ EOF
 %attr(644,root,root) %{php_inidir}/20-snuffleupagus.rules.d/typo3.rules
 
 %changelog
+* Wed May 17 2023 Dan Muey <dan@cpanel.net> - 0.7.0-4
+- ZC-10950: Add debug_package nil back w/ second directive (3rd item will be ZC-10951)
+
 * Wed May 10 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 0.7.0-3
 - ZC-10936: Clean up Makefile and remove debug-package-nil
 
